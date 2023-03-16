@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+
+    <h1 class="container-fluid text-center mb-5">Top 100 movies</h1>
+
+    {% for item in  items%}
+    <div class="card mb-3 container-fluid" style="max-width: 70%;">
+      <div class="row g-0">
+        <div class="col-md-2">
+          <img src="{{item.image}}" class="img-fluid rounded-start" style="width:80%" alt="...">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">{{item.rank}}. <a href="{% url 'movie' item.imdbid %}">{{item.title}}</a></h5>
+            <p class="card-text">"{{item.description}}"</p>
+            <p class="card-text">&#9733; {{item.rating}} {{item.year}} {% for g in item.genre %} {{g}} {% endfor %} </p>
+            
+            {% comment %} <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> {% endcomment %}
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    {% endblock body %}
+
